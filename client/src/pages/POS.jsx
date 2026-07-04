@@ -1,4 +1,5 @@
 import { useState, useRef, useCallback, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   HiOutlineSearch, 
@@ -448,9 +449,12 @@ export default function POS() {
       </div>
 
       {/* Receipt (for print) */}
-      <div className="receipt-container">
-        <Receipt ref={receiptRef} order={lastOrder} settings={settings} />
-      </div>
+      {createPortal(
+        <div className="receipt-container">
+          <Receipt ref={receiptRef} order={lastOrder} settings={settings} />
+        </div>,
+        document.body
+      )}
 
       {/* Receipt Modal */}
       <AnimatePresence>

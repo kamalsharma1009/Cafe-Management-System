@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion } from 'framer-motion';
 import { HiOutlineEye, HiOutlinePrinter, HiOutlineX } from 'react-icons/hi';
 import { useOrders, useCancelOrder } from '../hooks/useOrders';
@@ -152,7 +153,10 @@ export default function Orders() {
       </Modal>
 
       {/* Hidden receipt for printing */}
-      <div className="receipt-container"><Receipt order={viewOrder} settings={settings} /></div>
+      {createPortal(
+        <div className="receipt-container"><Receipt order={viewOrder} settings={settings} /></div>,
+        document.body
+      )}
 
       <ConfirmDialog isOpen={!!cancelId} onClose={() => setCancelId(null)} onConfirm={handleCancel} title="Cancel Order" message="Are you sure you want to cancel this order? Stock will be restored." confirmText="Cancel Order" loading={cancelOrder.isPending} />
     </div>

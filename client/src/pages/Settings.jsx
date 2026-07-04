@@ -93,13 +93,13 @@ export default function Settings() {
         {/* Logo */}
         <Card hover={false}>
           <h2 className="text-lg font-semibold text-cafe-text font-display mb-4">Logo</h2>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4">
             {logoPreview ? (
-              <img src={logoPreview} alt="Logo" className="w-20 h-20 rounded-xl object-cover border border-cafe-bg-secondary" />
+              <img src={logoPreview} alt="Logo" className="w-20 h-20 rounded-xl object-cover border border-cafe-bg-secondary flex-shrink-0" />
             ) : (
-              <div className="w-20 h-20 bg-cafe-bg-secondary rounded-xl flex items-center justify-center text-cafe-text-muted text-xs">No logo</div>
+              <div className="w-20 h-20 bg-cafe-bg-secondary rounded-xl flex items-center justify-center text-cafe-text-muted text-xs flex-shrink-0">No logo</div>
             )}
-            <input type="file" accept="image/*" onChange={handleLogoChange} className="text-sm text-cafe-text-light file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-medium file:bg-cafe-bg-secondary file:text-cafe-text hover:file:bg-cafe-card" />
+            <input type="file" accept="image/*" onChange={handleLogoChange} className="w-full sm:w-auto text-sm text-cafe-text-light file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-sm file:font-medium file:bg-cafe-bg-secondary file:text-cafe-text hover:file:bg-cafe-card" />
           </div>
         </Card>
 

@@ -95,22 +95,15 @@ body {
   }
 
   /* When printing a receipt specifically */
-  body.printing-receipt * {
-    visibility: hidden !important;
-  }
-
-  body.printing-receipt .receipt-container,
-  body.printing-receipt .receipt-container * {
-    visibility: visible !important;
+  body.printing-receipt #root {
+    display: none !important;
   }
 
   body.printing-receipt .receipt-container {
-    position: absolute !important;
-    left: 50% !important;
-    top: 0 !important;
-    transform: translateX(-50%) !important;
-    width: 100% !important;
     display: block !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
   }
 
   /* When printing normal reports (without printing-receipt class) */
