@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #FAF7F3;
+  color: #3A312C;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F0E4D3;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DCC5B2;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D9A299;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid #D9A299;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Ripple effect for buttons */
+@layer components {
+  .btn-ripple {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-ripple::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 10%, transparent 10%);
+    transform: scale(10);
+    opacity: 0;
+    transition: transform 0.5s, opacity 0.5s;
+  }
+
+  .btn-ripple:active::after {
+    transform: scale(0);
+    opacity: 1;
+    transition: 0s;
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+  }
+}
+
+/* Hide receipt container in screen mode */
+.receipt-container {
+  display: none;
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  /* When printing a receipt specifically */
+  body.printing-receipt * {
+    visibility: hidden !important;
+  }
+
+  body.printing-receipt .receipt-container,
+  body.printing-receipt .receipt-container * {
+    visibility: visible !important;
+  }
+
+  body.printing-receipt .receipt-container {
+    position: absolute !important;
+    left: 50% !important;
+    top: 0 !important;
+    transform: translateX(-50%) !important;
+    width: 100% !important;
+    display: block !important;
+  }
+
+  /* When printing normal reports (without printing-receipt class) */
+  body:not(.printing-receipt) .no-print,
+  body:not(.printing-receipt) aside,
+  body:not(.printing-receipt) header,
+  body:not(.printing-receipt) button,
+  body:not(.printing-receipt) .btn-ripple,
+  body:not(.printing-receipt) select,
+  body:not(.printing-receipt) input {
+    display: none !important;
+  }
+
+  body:not(.printing-receipt) main {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+  }
+
+  body:not(.printing-receipt) .main-content-wrapper {
+    margin-left: 0 !important;
+  }
+
+  .receipt-58mm {
+    width: 48mm;
+  }
+
+  .receipt-80mm {
+    width: 72mm;
+  }
+
+  @page {
+    margin: 10mm;
+    size: auto;
+  }
+}
+
+/* Smooth number transition */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hide scrollbar on mobile drawer */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
