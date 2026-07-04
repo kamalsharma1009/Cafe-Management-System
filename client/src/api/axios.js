@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || '';
+let API_URL = import.meta.env.VITE_API_URL || '';
+if (API_URL && !API_URL.startsWith('http://') && !API_URL.startsWith('https://')) {
+  API_URL = `https://${API_URL}`;
+}
 console.log('[CafeFlow] Configured API URL:', API_URL || '(relative path /api)');
 
 const api = axios.create({
